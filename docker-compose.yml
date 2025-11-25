@@ -19,8 +19,10 @@ services:
     command: sh -c "php -S 0.0.0.0:80 -t /var/php/public"
 
   doctrine.db:
-    image: postgres:16
+    image: 'postgres:latest'
     env_file: ./doctrine.env
+    ports:
+      - '5432:5432'
     networks:
       - doctrine_net
     volumes:
