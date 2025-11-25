@@ -1,13 +1,12 @@
 <?php
 
-namespace core\domain\entities;
+namespace pratilib\core\domain\entities;
 
 use Cassandra\Uuid;
 use Error;
 
-class Structure
-{
-    private UUID $id;
+class Structure {
+    private Uuid $id;
     private string $nom;
     private string $adresse;
     private String $ville;
@@ -28,7 +27,6 @@ class Structure
         $this->code_postal = $code_postal;
         $this->telephone = $telephone;
     }
-
     //getter magique
     public function __get($property) {
         if (property_exists($this, $property)) {

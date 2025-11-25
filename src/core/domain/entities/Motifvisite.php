@@ -1,6 +1,6 @@
 <?php
 
-namespace core\domain\entities;
+namespace pratilib\core\domain\entities;
 
 use Error;
 

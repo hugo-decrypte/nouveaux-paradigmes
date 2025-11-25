@@ -1,13 +1,13 @@
 <?php
 
-namespace core\domain\entities;
+namespace pratilib\core\domain\entities;
 
 use Cassandra\Uuid;
 use Error;
 
 class Praticien
 {
-    private UUID $id;
+    private Uuid $id;
     private string $nom;
     private string $rpps_id;
     private string $prenom;
