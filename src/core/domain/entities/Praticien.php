@@ -2,7 +2,7 @@
 
 namespace pratilib\core\domain\entities;
 
-use App\Entity\Structure;
+use pratilib\core\domain\entities;
 use Cassandra\Uuid;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
