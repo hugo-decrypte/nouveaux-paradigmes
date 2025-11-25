@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="pratilib\core\domain\entities\Praticien" table="praticien">
+
+        <id name="id" type="guid" column="id">
+            <generator strategy="NONE"/>
+        </id>
+
+        <field name="nom" type="string" column="nom" length="48" nullable="false"/>
+        <field name="prenom" type="string" column="prenom" length="48" nullable="false"/>
+        <field name="ville" type="string" column="ville" length="48" nullable="false"/>
+        <field name="email" type="string" column="email" length="128" nullable="false" unique="true"/>
+        <field name="telephone" type="string" column="telephone" length="24" nullable="false"/>
+        <field name="rppsId" type="string" column="rpps_id" length="12" nullable="true"/>
+        <field name="titre" type="string" column="titre" length="8" nullable="false"/>
+        <field name="organisation" type="boolean" column="organisation" nullable="false"/>
+        <field name="accepteNouveauClient" type="boolean" column="nouveau_patient" nullable="false"/>
+
+        <many-to-one field="specialite" target-entity="pratilib\core\domain\entities\Specialite">
+            <join-column name="specialite_id" referenced-column-name="id" nullable="false"/>
+        </many-to-one>
+
+        <many-to-one field="structure" target-entity="pratilib\core\domain\entities\Structure">
+            <join-column name="structure_id" referenced-column-name="id" nullable="true"/>
+        </many-to-one>
+
+        <many-to-many field="motifVisites" target-entity="pratilib\core\domain\entities\Motifvisite" inversed-by="praticiens">
+            <join-table name="praticien2motif">
+                <join-columns>
+                    <join-column name="praticien_id" referenced-column-name="id"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="motif_id" referenced-column-name="id"/>
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
+        <many-to-many field="moyensPaiement" target-entity="pratilib\core\domain\entities\Moyenpaiement" inversed-by="praticiens">
+            <join-table name="praticien2moyen">
+                <join-columns>
+                    <join-column name="praticien_id" referenced-column-name="id"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="moyen_id" referenced-column-name="id"/>
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
+    </entity>
+</doctrine-mapping>
