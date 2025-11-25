@@ -2,6 +2,8 @@
 
 namespace core\domain\entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Error;
 
 class Moyenpaiement
@@ -9,27 +11,35 @@ class Moyenpaiement
     private int $id;
     private string $libelle;
 
-    public function __construct(int $id, string $libelle)
+    protected Collection $praticiens;
+
+    public function __construct()
     {
-        $this->id = $id;
+        $this->praticiens = new ArrayCollection();
+    }
+
+    public function getId(): int{
+        return $this->id;
+    }
+
+    public function getLibelle(): string{
+        return $this->libelle;
+    }
+
+    public function setLibelle(string $libelle): self{
         $this->libelle = $libelle;
+        return $this;
     }
 
-    //getter magique
-    public function __get($property)
-    {
-        if (property_exists($this, $property)) {
-            return $this->$property;
-        }
-        throw new Error("Property not found");
+    /**
+     * @return Collection
+     */
+
+    public function getPraticiens(): Collection{
+        return $this->praticiens;
     }
 
-    //setter magique
-    public function __set($property, $value)
-    {
-        if (property_exists($this, $property)) {
-            $this->$property = $value;
-        }
-        throw new Error("Property not found");
+    public function setPraticiens(Collection $praticiens): void{
+        $this->praticiens = $praticiens;
     }
 }
