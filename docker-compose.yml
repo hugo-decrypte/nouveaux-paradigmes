@@ -4,7 +4,7 @@ networks:
 
 services:
   # service DB
-  charlymatloc.db:
+  doctrine.db:
     image: 'postgres:latest'
     env_file: ./doctrine.env
     ports:
