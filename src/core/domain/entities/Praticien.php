@@ -1,6 +1,6 @@
 <?php
 
-namespace core\domain\entities;
+namespace pratilib\core\domain\entities;
 
 use App\Entity\Structure;
 use Cassandra\Uuid;
@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\Collection;
 
 class Praticien
 {
-    private UUID $id;
+    private Uuid $id;
     private string $nom;
     private string $rpps_id;
     private string $prenom;

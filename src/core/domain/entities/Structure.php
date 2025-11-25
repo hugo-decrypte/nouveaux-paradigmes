@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Entity;
+namespace pratilib\core\domain\entities;
 
+use Cassandra\Uuid;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 class Structure
 {
-    private ?string $id = null;
+    private ?string $id;
     private string $nom;
     private string $adresse;
     private string $ville;
