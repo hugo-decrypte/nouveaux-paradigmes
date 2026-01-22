@@ -1,7 +1,3 @@
-networks:
-  doctrine_net:
-    driver: bridge
-
 services:
   doctrine.php:
     build:
@@ -12,19 +8,15 @@ services:
     volumes:
       - ./app:/var/php
     working_dir: /var/php
-    networks:
-      - doctrine_net
     depends_on:
       - doctrine.db
-    command: sh -c "php -S 0.0.0.0:80 -t /var/php/public"
+    command: sh -c "composer install && php -S 0.0.0.0:80 -t /var/php/public"
 
   doctrine.db:
-    image: 'postgres:latest'
+    image: 'mongo:latest'
     env_file: ./doctrine.env
     ports:
       - '5432:5432'
-    networks:
-      - doctrine_net
     volumes:
       - ./sql:/docker-entrypoint-initdb.d
       - pgdata:/var/lib/postgresql/data
